@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/board.js"></script>
+    <script src="/moment.js"></script>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100;
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        background: #504e4e;
+        display: flex;
+        flex-direction: row;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .menu {
+        width: 120px;
+        text-align: center;
+        transition: 0.2s linear;
+      }
+      .menu:hover {
+        background: rgb(209, 105, 105);
+      }
+      .title {
+        border-top: 1px solid #111;
+        border-bottom: 1px solid #111;
+        margin-bottom: 10px;
+        height: 20%;
+      }
+      .tit_text {
+        position: relative;
+        /* left: 20%; */
+      }
+      .content {
+        border-bottom: 1px solid #111;
+        margin-bottom: 20px;
+        padding-right: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 60%;
+      }
+      .box {
+        position: relative;
+        /* left: 15%; */
+        width: 100%;
+        height: 100%;
+      }
+      .sub_title,
+      .sub_content,
+      .name,
+      .image {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .sub_content {
+        height: 300px;
+      }
+      input {
+        position: absolute;
+        left: 70px;
+        width: 70%;
+      }
+      #board_sub {
+        height: 300px;
+        text-align: left;
+        line-height: 0px;
+      }
+      .footer {
+        height: 20%;
+        border-bottom: 1px solid #000;
+      }
+      button {
+        position: relative;
+        /* left: 185px; */
+        width: 60px;
+        height: 35px;
+        border: 0px solid #fff;
+        border-radius: 5px;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .add {
+        background: rgb(68, 164, 196);
+      }
+      .list_btn {
+        background: rgb(231, 162, 34);
+      }
+    </style>
+    <script></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="menu"><h3>홈화면</h3></div>
+        <div class="menu"><h3>게시판</h3></div>
+        <div class="menu"><h3>글작성</h3></div>
+      </div>
+      <div class="title">
+        <h2 class="tit_text">글작성</h2>
+      </div>
+      <div class="content">
+        <div class="box">
+          <div class="sub_title">
+            <span>제목</span>
+            <input
+              class="input1"
+              type="text"
+              value="제목을 입력하세요."
+              id="board_title"
+            />
+          </div>
+          <div class="sub_content">
+            <span class="line">내용</span>
+            <input
+              id="board_sub"
+              class="input1"
+              type="text"
+              value="내용을 입력하세요."
+            />
+          </div>
+          <div class="name">
+            <span>작성자</span>
+            <input
+              class="input2"
+              type="text"
+              value="닉네임을 입력하세요."
+              id="board_name"
+            />
+          </div>
+          <div class="image">
+            <span>이미지</span>
+            <input type="file" />
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <button type="submit" class="add" id="board_submit">등록</button>
+        <button class="list_btn">목록</button>
+      </div>
+    </div>
+  </body>
+</html>
