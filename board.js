@@ -38,16 +38,15 @@ function localSave(edata) {
     let earr = localStorage.getItem("arr");
     let edata = JSON.parse(earr) ?? []; // null, undefined
     // if (edata) getData(edata);
+    console.log(edata)
     let nid = 0;
     b_submit.addEventListener("click", () => {
       todo();
     });
     function todo() {
       if (titleData) {
-        nid++;
-        console.log(nid);
         edata.push({
-          id: nid,
+          id: (edata[edata.length-1].id)*1+1,
           title_data: titleData,
           sub_data: subData,
           name_data: nameData,
