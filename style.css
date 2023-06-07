@@ -1,1 +1,54 @@
-test{}
+body {
+    background-color: #f0f0f0;
+    width: 600px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #0e0e0e;
+}
+span {
+  font-weight: bold;
+}
+  /* 흰배경 */
+  form.update {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  
+  /*내용 칸*/
+  input[type="text"],
+  textarea {
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  /*삭제 버튼*/
+  input[type="button"] {
+    background-color: #df3838;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  /* 수정 버튼 */
+  input[type="submit"]
+ {
+    background-color: #2c6a1c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  /*선 */
+  hr {
+    border: none;
+    border-top: 2px solid #ccc;
+    margin: 20px 0;
+  }

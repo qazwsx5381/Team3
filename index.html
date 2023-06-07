@@ -4,7 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>글 수정 페이지</title>
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body></body>
+
+  <body>
+    <div class="">
+      <form class="update">
+        <h2>글수정</h2>
+      <input type="hidden" class="idx" value=""/>
+          <span>제목</span><br>
+          <input type="text" class="title" value=""/><hr>
+
+         <span>내용</span><br>
+          <textarea rows="10" cols="20" name="text"></textarea> <hr>
+          <div>
+              <input type=submit value="수정"/>
+              <input type=button value="취소"/>
+          </div>
+      </form>
+  </div>        
+  </body>
 </html>
