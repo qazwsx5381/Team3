@@ -346,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
                 footer();
                 div_4.remove();
+                div_footer();
                 div_5.innerHTML += div9(
                   button1("목록") +
                     button2("수정") +
@@ -353,7 +354,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     button4("이전글") +
                     button5("다음글")
                 );
-                div_footer();
                 // div_5.innerHTML += div9(
                 //   button1("목록") +
                 //     button2("수정") +
