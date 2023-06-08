@@ -2,7 +2,11 @@ function localSave(edata) {
     memory = JSON.stringify(edata);
     localStorage.setItem("arr", memory);
   }
-
+  function timestamp(){
+    var today = new Date();
+    today.setHours(today.getHours() + 9);
+    return today.toISOString().replace('T', ' ').substring(0, 19);
+}
   // function getData(edata) {
   //   const getInput = document.querySelector("input");
   //   edata.forEach((v) => {
@@ -17,7 +21,7 @@ function localSave(edata) {
     b_sub = document.getElementById("board_sub");
     b_name = document.getElementById("board_name");
     b_submit = document.getElementById("board_submit");
-    let getTime = moment().format("YYYY MMMM Do, h:mm:ss a");
+    b_list = document.getElementById("board_list");
     let titleData = "";
     let subData = "";
     let nameData = "";
@@ -42,23 +46,36 @@ function localSave(edata) {
     let nid = 0;
     b_submit.addEventListener("click", () => {
       todo();
+      window.location = '/게시판.html';
+    });
+    b_list.addEventListener("click", () => {
+      window.location = '/게시판.html';
     });
     function todo() {
       if (titleData) {
+        if(edata.length===0){
         edata.push({
-          id: (edata[edata.length-1].id)*1+1,
+          id: 1,
           title_data: titleData,
           sub_data: subData,
           name_data: nameData,
-          time_data: getTime,
+          time_data: timestamp(),
+          count_data: 0
         });
+        } else {
+          edata.push({
+            id: (edata[edata.length-1].id)*1+1,
+            title_data: titleData,
+            sub_data: subData,
+            name_data: nameData,
+            time_data: timestamp(),
+            count_data: 0
+          });
+        }
         localSave(edata);
         titleData = "";
         subData = "";
         nameData = "";
-        // if (edata) {
-        //   list(edata[edata.length - 1], cnt);
-        // }
       }
     }
     console.log(nid);
