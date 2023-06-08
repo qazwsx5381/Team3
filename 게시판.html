@@ -5,14 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- <script src="/board.js"></script> -->
     <link rel="stylesheet" href="./헤더.css" />
-    <script src="/board.js"></script>
+    <script src="/board_1.js"></script>
     <script src="/moment.js"></script>
     <style>
       html,
       body {
         width: 100%;
-        height: 100;
+        min-width: 500px;
       }
       .container {
         width: 100%;
@@ -21,63 +22,69 @@
         flex-direction: column;
       }
       #header {
-        background: dodgerblue;
+        background: darkolivegreen;
         margin-bottom: 10px;
       }
-
       .content {
         border-bottom: 1px solid #111;
-        border-top: 1px solid #111;
-        padding-top: 10px;
-        margin-bottom: 20px;
-        padding-left: 5px;
+        margin-bottom: 10px;
+        /* padding-right: 10px; */
         display: flex;
         flex-direction: column;
         width: 100%;
         height: 60%;
-        /* background-image: url(../img/보드이미지.jpeg);
-        background-repeat: no-repeat;
-        background-size: cover; */
       }
-      .sub_title,
-      .sub_content,
-      .name,
-      .image {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
+      .board {
+        width: 100%;
       }
-      .sub_content {
-        height: 300px;
+      .board .board_title {
+        background-color: gray;
+        color: white;
+        height: 30px;
+      }
+      .board .setText {
+        text-align: center;
+      }
+      .board .board_title .board_num {
+        width: 10%;
+      }
+      .board .board_title .board_tit {
+        width: 20%;
+      }
+      .board .board_title .board_create {
+        width: 10%;
+      }
+      .board .board_title .board_count {
+        width: 10%;
+      }
+      .board .board_title .board_time {
+        width: 40%;
       }
       input {
-        position: absolute;
-        left: 70px;
-        width: 70%;
+        /* position: absolute; */
+        /* left: 70px; */
+        /* right: 70px; */
+        width: 100%;
       }
-      #board_sub {
+      /* #board_sub {
         height: 300px;
         text-align: left;
-        line-height: 0px;
-      }
+        line-height: 0px; 
+      } */
       .footer {
         height: 20%;
         border-bottom: 1px solid #000;
       }
       .footer > button {
-        width: 60px;
+        position: relative;
+        /* left: 185px; */
+        /* width: 60px; */
         height: 35px;
         border: 0px solid #fff;
         border-radius: 5px;
         color: #fff;
         margin-bottom: 10px;
-      }
-      .footer > button:first-child {
         background: rgb(68, 164, 196);
-      }
-      .footer > button:last-child {
-        background: rgb(231, 162, 34);
       }
     </style>
     <script>
@@ -106,54 +113,34 @@
         const bts = document.querySelectorAll(".tab");
 
         /* 초기화면 선택 */
-        bts[2].style.background = color[2];
+        bts[1].style.background = color[1];
       });
     </script>
   </head>
   <body>
     <div class="container">
       <div id="header">
-        <h1>게시글 작성</h1>
+        <h1>게시판</h1>
       </div>
 
       <div class="content">
-        <div class="box">
-          <div class="sub_title">
-            <span>제목</span>
-            <input
-              class="input1"
-              type="text"
-              value="제목을 입력하세요."
-              id="board_title"
-            />
-          </div>
-          <div class="sub_content">
-            <span class="line">내용</span>
-            <input
-              id="board_sub"
-              class="input1"
-              type="text"
-              value="내용을 입력하세요."
-            />
-          </div>
-          <div class="name">
-            <span>작성자</span>
-            <input
-              class="input2"
-              type="text"
-              value="닉네임을 입력하세요."
-              id="board_name"
-            />
-          </div>
-          <div class="image">
-            <span>이미지</span>
-            <input type="file" />
-          </div>
+        <div class="search">
+          <input type="text" name="" id="search" value="검색어를 입력하세요" />
+        </div>
+        <div>
+          <table class="board">
+            <tr class="board_title">
+              <th id="board_num">글번호</th>
+              <th id="board_title">제목</th>
+              <th id="board_create">작성자</th>
+              <th id="board_count">조회수</th>
+              <th id="board_time">작성일자</th>
+            </tr>
+          </table>
         </div>
       </div>
       <div class="footer">
-        <button type="submit" id="board_submit">등록</button>
-        <button type="submit" id="board_list">목록</button>
+        <button type="submit" id="create">등록</button>
       </div>
     </div>
   </body>

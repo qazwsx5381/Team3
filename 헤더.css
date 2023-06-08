@@ -8,14 +8,12 @@
     font-size: 17px;
     width: 25%;
   }
-  /* change background color when mouse over */
+  
   .tab:hover {
     background: #777;
   }
-  /* default content */
+  
   #header {
     color: #fff;
-    display: block;
-    padding: 1px;
     text-align: center;
   }
