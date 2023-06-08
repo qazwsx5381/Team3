@@ -8,6 +8,11 @@
     <!-- <script src="/board.js"></script> -->
     <script src="/board_1.js"></script>
     <script src="/moment.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"
+    ></script>
     <style>
       html,
       body {
@@ -83,16 +88,24 @@
         width: 40%;
       }
       input {
-        /* position: absolute; */
-        /* left: 70px; */
-        /* right: 70px; */
         width: 100%;
       }
-      /* #board_sub {
-        height: 300px;
-        text-align: left;
-        line-height: 0px; 
-      } */
+      .t_num,
+      .t_title,
+      .t_count,
+      .t_create,
+      .t_time,
+      .t_sub {
+        display: flex;
+      }
+      .content .t_a {
+        display: flex;
+        width: 20%;
+      }
+      .content .t_b {
+        display: flex;
+        width: 80%;
+      }
       .footer {
         height: 20%;
         border-bottom: 1px solid #000;
@@ -105,9 +118,22 @@
         border: 0px solid #fff;
         border-radius: 5px;
         color: #fff;
-        margin-bottom: 10px;
+        margin: 0 10px 10px 0;
       }
       .add {
+        background: rgb(68, 164, 196);
+      }
+      .list {
+        background-color: orange;
+      }
+      .edit {
+        background-color: rgb(38, 185, 38);
+      }
+      .delete {
+        background-color: pink;
+      }
+      .pre,
+      .next {
         background: rgb(68, 164, 196);
       }
     </style>
@@ -123,11 +149,11 @@
       <div class="title">
         <h2 class="tit_text">게시판</h2>
       </div>
-      <div class="content">
+      <div class="content" id="content">
         <div class="search">
           <input type="text" name="" id="search" value="검색어를 입력하세요" />
         </div>
-        <div>
+        <div class="t_board">
           <table class="board">
             <tr class="board_title">
               <th id="board_num">글번호</th>
@@ -139,7 +165,7 @@
           </table>
         </div>
       </div>
-      <div class="footer">
+      <div class="footer" id="footer">
         <button type="submit" class="add" id="create">등록</button>
       </div>
     </div>
