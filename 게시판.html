@@ -14,6 +14,7 @@
       body {
         width: 100%;
         min-width: 500px;
+        margin: 0;
       }
       .container {
         width: 100%;
@@ -22,7 +23,7 @@
         flex-direction: column;
       }
       #header {
-        background: darkolivegreen;
+        background: #8e6e53;
         margin-bottom: 10px;
       }
       .content {
@@ -45,26 +46,28 @@
       .board .setText {
         text-align: center;
       }
-      .board .board_title .board_num {
+      .board .board_title #board_num {
         width: 10%;
       }
-      .board .board_title .board_tit {
-        width: 20%;
-      }
-      .board .board_title .board_create {
-        width: 10%;
-      }
-      .board .board_title .board_count {
-        width: 10%;
-      }
-      .board .board_title .board_time {
+      .board .board_title #board_tit {
         width: 40%;
+      }
+      .board .board_title #board_create {
+        width: 10%;
+      }
+      .board .board_title #board_count {
+        width: 10%;
+      }
+      .board .board_title #board_time {
+        width: 20%;
       }
       input {
         /* position: absolute; */
         /* left: 70px; */
         /* right: 70px; */
-        width: 100%;
+        width: 50%;
+        height: 20px;
+        margin: 5px;
       }
       /* #board_sub {
         height: 300px;
@@ -90,7 +93,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const content = ["홈", "게시판", "글작성", "제작팀"];
-        const color = ["tomato", "darkolivegreen", "dodgerblue", "orange"];
+        const color = ["#31763a", "#8e6e53", "#05668d", "#f9dc5c"];
         const a = [
           "./메인.html",
           "./게시판.html",
@@ -109,6 +112,7 @@
           link.textContent = content[i];
           link.style.textDecoration = "none";
           link.style.color = "#fff";
+          link.style.display = "block";
         }
         const bts = document.querySelectorAll(".tab");
 
@@ -131,7 +135,7 @@
           <table class="board">
             <tr class="board_title">
               <th id="board_num">글번호</th>
-              <th id="board_title">제목</th>
+              <th id="board_tit">제목</th>
               <th id="board_create">작성자</th>
               <th id="board_count">조회수</th>
               <th id="board_time">작성일자</th>

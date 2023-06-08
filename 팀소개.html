@@ -11,6 +11,7 @@
       body {
         width: 100%;
         min-width: 500px;
+        margin: 0;
       }
       .container {
         width: 100%;
@@ -19,13 +20,13 @@
         flex-direction: column;
       }
       #header {
-        background: orange;
+        background: #f9dc5c;
       }
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const content = ["홈", "게시판", "글작성", "제작팀"];
-        const color = ["tomato", "darkolivegreen", "dodgerblue", "orange"];
+        const color = ["#31763a", "#8e6e53", "#05668d", "#f9dc5c"];
         const a = [
           "./메인.html",
           "./게시판.html",
@@ -44,6 +45,7 @@
           link.textContent = content[i];
           link.style.textDecoration = "none";
           link.style.color = "#fff";
+          link.style.display = "block";
         }
         const bts = document.querySelectorAll("button");
 
@@ -57,7 +59,7 @@
       <div id="header">
         <h1>팀소개</h1>
       </div>
-      <img src="/Team3/img/팀소개.jpg" alt="팀원이미지" />
+      <img src="./팀소개.jpg" alt="팀원이미지" />
     </div>
   </body>
 </html>

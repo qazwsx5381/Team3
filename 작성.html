@@ -13,6 +13,7 @@
       body {
         width: 100%;
         height: 100;
+        margin: 0;
       }
       .container {
         width: 100%;
@@ -21,7 +22,7 @@
         flex-direction: column;
       }
       #header {
-        background: dodgerblue;
+        background: #05668d;
         margin-bottom: 10px;
       }
 
@@ -83,7 +84,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const content = ["홈", "게시판", "글작성", "제작팀"];
-        const color = ["tomato", "darkolivegreen", "dodgerblue", "orange"];
+        const color = ["#31763a", "#8e6e53", "#05668d", "#f9dc5c"];
         const a = [
           "./메인.html",
           "./게시판.html",
@@ -102,6 +103,7 @@
           link.textContent = content[i];
           link.style.textDecoration = "none";
           link.style.color = "#fff";
+          link.style.display = "block";
         }
         const bts = document.querySelectorAll(".tab");
 
