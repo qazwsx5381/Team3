@@ -6,20 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- <script src="/board.js"></script> -->
+    <link rel="stylesheet" href="./헤더.css" />
     <script src="/board_1.js"></script>
     <script src="/moment.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.7.0.js"
-      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-      crossorigin="anonymous"
-    ></script>
     <style>
       html,
       body {
-        width: 100%;
-        min-width: 500px;
-        /* margin-right: 100px; */
-        /* height: 100%; */
+        min-width: 650px;
+        margin: 0;
       }
       .container {
         width: 100%;
@@ -27,42 +21,20 @@
         display: flex;
         flex-direction: column;
       }
-      .header {
-        background: #504e4e;
-        display: flex;
-        flex-direction: row;
-        color: #fff;
-        margin-bottom: 10px;
-      }
-      .menu {
-        width: 120px;
-        text-align: center;
-        transition: 0.2s linear;
-      }
-      .menu:hover {
-        background: rgb(209, 105, 105);
-      }
-      .title {
-        border-top: 1px solid #111;
-        border-bottom: 1px solid #111;
-        margin-bottom: 10px;
-        height: 20%;
-      }
-      .tit_text {
-        position: relative;
-        /* left: 20%; */
+      #header {
+        background: #8e6e53;
       }
       .content {
-        border-bottom: 1px solid #111;
-        margin-bottom: 10px;
-        /* padding-right: 10px; */
+        border: 2px dotted #111;
+        padding: 10px;
+        margin: 10px;
         display: flex;
         flex-direction: column;
-        width: 100%;
         height: 60%;
       }
       .board {
         width: 100%;
+        text-align: center;
       }
       .board .board_title {
         background-color: gray;
@@ -72,102 +44,125 @@
       .board .setText {
         text-align: center;
       }
-      .board .board_title .board_num {
+      .board .board_title #board_num {
         width: 10%;
       }
-      .board .board_title .board_tit {
-        width: 20%;
-      }
-      .board .board_title .board_create {
-        width: 10%;
-      }
-      .board .board_title .board_count {
-        width: 10%;
-      }
-      .board .board_title .board_time {
+      .board .board_title #board_tit {
         width: 40%;
       }
+      .board .board_title #board_create {
+        width: 10%;
+      }
+      .board .board_title #board_count {
+        width: 10%;
+      }
+      .board .board_title #board_time {
+        width: 20%;
+      }
       input {
-        width: 100%;
+        color: gainsboro;
+        width: 50%;
+        height: 20px;
+        margin: 5px;
       }
       .t_num,
       .t_title,
       .t_count,
       .t_create,
       .t_time,
+      .t_editTime {
+        display: flex;
+        border-bottom: 1px black solid;
+      }
       .t_sub {
         display: flex;
       }
-      .content .t_a {
+      .t_a,
+      .t_b {
         display: flex;
-        width: 20%;
+        justify-content: center;
+        align-items: center;
       }
-      .content .t_b {
-        display: flex;
-        width: 80%;
+      .t_a {
+        width: 15%;
+        height: 30px;
       }
       .footer {
         height: 20%;
         border-bottom: 1px solid #000;
       }
-      button {
+      .footer > button {
         position: relative;
-        /* left: 185px; */
-        /* width: 60px; */
+        width: 60px;
         height: 35px;
         border: 0px solid #fff;
         border-radius: 5px;
         color: #fff;
-        margin: 0 10px 10px 0;
+        margin: 10px;
+        margin-top: 0px;
       }
-      .add {
-        background: rgb(68, 164, 196);
-      }
-      .list {
-        background-color: orange;
-      }
-      .edit {
-        background-color: rgb(38, 185, 38);
-      }
-      .delete {
-        background-color: pink;
-      }
-      .pre,
-      .next {
-        background: rgb(68, 164, 196);
+      .footer #create {
+        background-color: rgb(154, 212, 183);
       }
     </style>
-    <script></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const content = ["홈", "게시판", "글작성", "제작팀"];
+        const color = ["#31763a", "#8e6e53", "#05668d", "#f9dc5c"];
+        const a = [
+          "./메인.html",
+          "./게시판.html",
+          "./작성.html",
+          "./팀소개.html",
+        ];
+
+        for (let i = 0; i < content.length; i++) {
+          const button = document.createElement("button");
+          const link = document.createElement("a");
+          const header = document.querySelector("#header");
+          header.appendChild(button);
+          button.setAttribute("class", "tab");
+          button.appendChild(link);
+          link.setAttribute("href", a[i]);
+          link.textContent = content[i];
+          link.style.textDecoration = "none";
+          link.style.color = "#fff";
+          link.style.display = "block";
+        }
+        const bts = document.querySelectorAll(".tab");
+
+        /* 초기화면 선택 */
+        bts[1].style.background = color[1];
+      });
+    </script>
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <div class="menu"><h3>홈화면</h3></div>
-        <div class="menu"><h3>게시판</h3></div>
-        <div class="menu"><h3>글작성</h3></div>
+      <div id="header">
+        <h1>게시판</h1>
       </div>
-      <div class="title">
-        <h2 class="tit_text">게시판</h2>
-      </div>
+
       <div class="content" id="content">
-        <div class="search">
+        <!-- <div class="search">
           <input type="text" name="" id="search" value="검색어를 입력하세요" />
         </div>
-        <div class="t_board">
+        <div>
           <table class="board">
             <tr class="board_title">
               <th id="board_num">글번호</th>
-              <th id="board_title">제목</th>
+              <th id="board_tit">제목</th>
               <th id="board_create">작성자</th>
               <th id="board_count">조회수</th>
               <th id="board_time">작성일자</th>
             </tr>
           </table>
-        </div>
+        </div> -->
       </div>
       <div class="footer" id="footer">
-        <button type="submit" class="add" id="create">등록</button>
+        <button type="submit" id="create">등록</button>
       </div>
     </div>
+
+    <script src="./board_list.js"></script>
   </body>
 </html>
