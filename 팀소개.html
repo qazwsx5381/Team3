@@ -19,8 +19,42 @@
         display: flex;
         flex-direction: column;
       }
+      .logo {
+        width: 50px;
+        height: 50px;
+        background: #f9dc5c;
+      }
+      .logoimg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #numlogo {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        transition: 0.3s ease-in;
+      }
+      #numlogo:hover {
+        opacity: 0;
+        transform: rotate(360deg);
+      }
+      #catlogo {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        transition: 0.3s ease-in;
+      }
       #header {
         background: #f9dc5c;
+      }
+      .team {
+        width: 100%;
+        height: 100%;
+        max-width: 1000px;
+        margin: auto;
       }
     </style>
     <script>
@@ -48,8 +82,6 @@
           link.style.display = "block";
         }
         const bts = document.querySelectorAll("button");
-
-        /* 초기화면 선택 */
         bts[3].style.background = color[3];
       });
     </script>
@@ -57,9 +89,17 @@
   <body>
     <div class="container">
       <div id="header">
+        <div class="logo" id="catlogo">
+          <img class="logoimg" src="../img/고양이.png" alt="고양이" />
+        </div>
+        <div class="logo" id="numlogo">
+          <a href="./메인.html"
+            ><img class="logoimg" src="../img/로고.png" alt="로고"
+          /></a>
+        </div>
         <h1>팀소개</h1>
       </div>
-      <img src="./팀소개.jpg" alt="팀원이미지" />
+      <img class="team" src="./팀소개.jpg" alt="팀원이미지" />
     </div>
   </body>
 </html>

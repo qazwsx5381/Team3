@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./헤더.css" />
+    <link rel="stylesheet" href="./폰트.css" />
     <style>
       html,
       body {
@@ -19,35 +20,105 @@
         display: flex;
         flex-direction: column;
       }
+      .logo {
+        width: 50px;
+        height: 50px;
+        background: #31763a;
+      }
+      .logoimg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #numlogo {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        transition: 0.3s ease-in;
+      }
+      #numlogo:hover {
+        opacity: 0;
+        transform: rotate(360deg);
+      }
+      #catlogo {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        transition: 0.3s ease-in;
+      }
+      #header {
+        background: #31763a;
+      }
       .content {
+        height: 100%;
         display: flex;
       }
       .main {
         width: 70%;
-        padding-right: 10px;
+        margin-right: 10px;
+        height: 100%;
+        background: beige;
       }
       .article {
         width: 30%;
         min-width: 150px;
         height: 100%;
+        background: beige;
+        display: block;
+        /* flex-direction: column;
+        align-items: center; */
       }
-      #header {
-        background: #31763a;
+      .side_title {
+        border-bottom: 1px solid #111;
+        padding-bottom: 10px;
+        font-family: "GoryeongStrawberry";
+        text-align: center;
       }
       h3 {
         border-bottom: 1px solid #111;
-        padding-bottom: 10px;
       }
-      .side_title {
-        text-align: center;
-      }
+
       .reco {
-        width: 100%;
+        width: 80%;
         height: 50px;
         border: none;
+        border-radius: 15px;
+        font-family: "GoryeongStrawberry";
         background: tomato;
         font-size: 1.2rem;
         color: white;
+        position: relative;
+        left: 11%;
+        transition: 0.15s ease;
+      }
+      .reco:hover {
+        transform: scale(1.05);
+        background: #f1ca1c;
+        color: tomato;
+      }
+      .food {
+        text-align: center;
+        font-family: "Cafe24ClassicType-Regular";
+        width: 100%;
+        height: 100%;
+      }
+      .imp_txt {
+        color: red;
+        border-bottom: 1px solid red;
+      }
+      .foodimg {
+        animation: foodimg 0.8s ease-in;
+      }
+      @keyframes foodimg {
+        from {
+          opacity: 10%;
+        }
+        to {
+          opacity: 100%;
+          transform: rotate(360deg);
+        }
       }
     </style>
     <script>
@@ -62,9 +133,9 @@
         ];
 
         for (let i = 0; i < content.length; i++) {
+          const header = document.querySelector("#header");
           const button = document.createElement("button");
           const link = document.createElement("a");
-          const header = document.querySelector("#header");
           header.appendChild(button);
           button.setAttribute("class", "tab");
           button.appendChild(link);
@@ -82,12 +153,34 @@
         const reco = document.querySelector(".reco");
         const food = document.querySelector(".food");
         const foodName = document.querySelector("h2");
-        const menu = ["김밥", "라면", "밀면", "육개장", "샌드위치", "순대국"];
+        const foodimg = document.createElement("img");
+        const menu = [
+          "김밥",
+          "라면",
+          "밀면",
+          "육개장",
+          "샌드위치",
+          "순대국",
+          "잔치국수",
+          "돌솥비빔밥",
+          "돈까스",
+          "김치볶음밥",
+          "오므라이스",
+          "제육덮밥",
+        ];
+        const menuimg = [];
         food.append(foodName);
+
+        for (let i = 0; i < menu.length; i++) {
+          menuimg.push("../img/" + menu[i] + ".jpg");
+        }
 
         reco.addEventListener("click", () => {
           const pick = Math.floor(Math.random() * menu.length);
           foodName.textContent = menu[pick];
+          foodimg.setAttribute("src", menuimg[pick]);
+          foodimg.className = "foodimg";
+          food.append(foodimg);
         });
       });
     </script>
@@ -95,11 +188,19 @@
   <body>
     <div class="container">
       <div id="header">
-        <h1>TEAM3</h1>
+        <div class="logo" id="catlogo">
+          <img class="logoimg" src="../img/고양이.png" alt="고양이" />
+        </div>
+        <div class="logo" id="numlogo">
+          <a href="./메인.html"
+            ><img class="logoimg" src="../img/로고.png" alt="로고"
+          /></a>
+        </div>
+        <h1 class="title">TEAM3</h1>
       </div>
       <div class="content">
         <div class="main">
-          <h3>공지사항</h3>
+          <h3 class="imp_txt">공지사항</h3>
           <div class="import"></div>
           <h3>최신글</h3>
           <div class="new"></div>
