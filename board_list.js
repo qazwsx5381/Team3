@@ -86,10 +86,10 @@ function editPost(index) {
   const edit_name = document.getElementById("board_name");
   document.getElementsByClassName("sub_title")[0].style.cssText =
     "display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;";
-  document.getElementsByClassName("name")[0].style.cssText =
-    "display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;";
   document.getElementsByClassName("sub_content")[0].style.cssText =
     "display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;";
+  document.getElementsByClassName("name")[0].style.cssText =
+    "display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;";
   document.getElementById("board_sub").style.cssText =
     "position: relative; display: flex; width: 90%; height: 100px;";
   document.querySelectorAll("input").forEach((v, i) => {
@@ -112,17 +112,26 @@ function editPost(index) {
   document.getElementById("board_sub").addEventListener("change", (event) => {
     editContent = event.currentTarget.value;
   });
+  console.log(editContent);
   document.getElementById("edit").addEventListener("click", () => {
-    if (editTitle == false || editContent == false) {
-      alert("수정할 내용이 없습니다.");
-    } else {
-      post.title = editTitle;
-      post.content = editContent;
-      post.editTime = timestamp();
-      console.log(post);
-      savePosts(posts);
-      showDetail(index);
+    if (editTitle === "" || editContent === "") {
+      if (editTitle === "") {
+        editTitle = post.title;
+        editContent;
+      } else if (editTitle === "") {
+        editTitle;
+        editContent = post.content;
+      } else {
+        editTitle;
+        editContent;
+      }
     }
+    post.title = editTitle;
+    post.content = editContent;
+    post.editTime = timestamp();
+    console.log(post);
+    savePosts(posts);
+    showDetail(index);
   });
   document.getElementsByClassName("btn_edit")[0].style.cssText =
     "width: 60px; height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
@@ -229,15 +238,15 @@ function showDetail(index) {
   <button class="btn btn_next" onclick="showNextPost(${index})">다음 게시물</button>
   `;
   document.getElementsByClassName("btn_list")[0].style.cssText =
-    "width: 60px; height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px";
   document.getElementsByClassName("btn_edit")[0].style.cssText =
-    "width: 60px; height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
   document.getElementsByClassName("btn_del")[0].style.cssText =
-    "width: 60px; height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px";
   document.getElementsByClassName("btn_pre")[0].style.cssText =
-    "width: 100px; height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px";
   document.getElementsByClassName("btn_next")[0].style.cssText =
-    "width: 100px; height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px";
 }
 
 // 이전 게시물 보기
