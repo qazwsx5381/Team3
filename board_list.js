@@ -134,9 +134,9 @@ function editPost(index) {
     showDetail(index);
   });
   document.getElementsByClassName("btn_edit")[0].style.cssText =
-    "width: 60px; height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
   document.getElementsByClassName("btn_del")[0].style.cssText =
-    "width: 60px; height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px";
 }
 
 // 게시물 리스트 보기
@@ -221,7 +221,7 @@ function showDetail(index) {
   }
   postsList.innerHTML = "";
   postsList.innerHTML =
-    div1(div7("글번호") + div8(index + 1)) +
+    div1(div7("글번호") + div8(post.id)) +
     div2(div7("제목") + div8(post.title)) +
     div3(div7("조회수") + div8(post.count)) +
     div4(div7("작성자") + div8(post.name)) +
@@ -237,16 +237,17 @@ function showDetail(index) {
   <button class="btn btn_pre" onclick="showPreviousPost(${index})">이전 게시물</button>
   <button class="btn btn_next" onclick="showNextPost(${index})">다음 게시물</button>
   `;
+  document.getElementById("footer").style.display = "flex";
   document.getElementsByClassName("btn_list")[0].style.cssText =
-    "height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px;";
   document.getElementsByClassName("btn_edit")[0].style.cssText =
-    "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px;";
   document.getElementsByClassName("btn_del")[0].style.cssText =
-    "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px;";
   document.getElementsByClassName("btn_pre")[0].style.cssText =
-    "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px;";
   document.getElementsByClassName("btn_next")[0].style.cssText =
-    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px";
+    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px; line-height:middle;";
 }
 
 // 이전 게시물 보기
