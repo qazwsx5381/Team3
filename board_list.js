@@ -156,41 +156,52 @@ function renderPosts() {
     </tr>
     </table>
     `;
-  for (let i = posts.length - 1; i >= 0; i--) {
-    const post = posts[i];
+  if (posts.length === 0) {
     const listItem = document.querySelector("table#board");
     const link = document.createElement("tr");
     const td = document.createElement("td");
-    const td1 = document.createElement("td");
-    const td2 = document.createElement("td");
-    const td3 = document.createElement("td");
-    const td4 = document.createElement("td");
-    td.textContent = post.id;
-    td1.textContent = post.title;
-    td2.textContent = post.name;
-    td3.textContent = post.count;
-    td4.textContent = post.time;
+    td.textContent = "작성된 게시물이 없습니다.";
     td.className = "board_num";
-    td1.className = "board_tit";
-    td2.className = "board_create";
-    td3.className = "board_count";
-    td4.className = "board_time";
-
-    td1.addEventListener("click", () => {
-      showDetail(i);
-    });
-    link.append(td, td1, td2, td3, td4);
-
+    td.setAttribute("colspan", "5");
+    link.append(td);
     listItem.appendChild(link);
-    console.log(document.querySelectorAll("td"));
-    document.querySelectorAll("td").forEach((v) => {
-      v.style.backgroundColor = "gainsboro";
-    });
+    document.querySelector("td").style.backgroundColor = "gainsboro";
+    document.querySelector("td").style.height = "30px";
+  } else {
+    for (let i = posts.length - 1; i >= 0; i--) {
+      const post = posts[i];
+      const listItem = document.querySelector("table#board");
+      const link = document.createElement("tr");
+      const td = document.createElement("td");
+      const td1 = document.createElement("td");
+      const td2 = document.createElement("td");
+      const td3 = document.createElement("td");
+      const td4 = document.createElement("td");
+      td.textContent = post.id;
+      td1.textContent = post.title;
+      td2.textContent = post.name;
+      td3.textContent = post.count;
+      td4.textContent = post.time;
+      td.className = "board_num";
+      td1.className = "board_tit";
+      td2.className = "board_create";
+      td3.className = "board_count";
+      td4.className = "board_time";
+
+      td1.addEventListener("click", () => {
+        showDetail(i);
+      });
+      link.append(td, td1, td2, td3, td4);
+      listItem.appendChild(link);
+      document.querySelectorAll("td").forEach((v) => {
+        v.style.backgroundColor = "gainsboro";
+      });
+    }
   }
   detailContainer.innerHTML = "";
   detailContainer.innerHTML = `
-  <button id="create">작성</button>
-  `;
+<button id="create">작성</button>
+`;
   b_list = document.querySelector("button#create");
   b_list.addEventListener("click", () => {
     window.location = "./작성.html";
