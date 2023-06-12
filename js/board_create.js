@@ -70,8 +70,8 @@ document
     titleInput.value = "";
     contentInput.value = "";
     nameInput.value = "";
-    window.location = "./게시판.html";
+    window.location = "../html/board.html";
   });
 document.getElementById("list_btn").addEventListener("click", () => {
-  window.location = "./게시판.html";
+  window.location = "../html/board.html";
 });

@@ -240,7 +240,7 @@ function renderPosts() {
 `;
   b_list = document.querySelector("button#create");
   b_list.addEventListener("click", () => {
-    window.location = "./html/create.html";
+    window.location = "/html/create.html";
   });
 }
 
