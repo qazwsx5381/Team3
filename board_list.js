@@ -45,8 +45,6 @@ function editPost(index) {
   const post = posts[index];
   const postsList = document.getElementById("content");
   const form = document.createElement("form");
-  let editTitle = "";
-  let editContent = "";
   postsList.innerHTML = "";
   postsList.appendChild(form);
   form.setAttribute("id", "postForm");
@@ -77,7 +75,7 @@ function editPost(index) {
           type="text"
           placeholder="닉네임을 입력하세요."
           id="board_name"
-          required
+          disabled
         />
       </div>
     </div>`;
@@ -99,6 +97,8 @@ function editPost(index) {
   edit_title.value = post.title;
   edit_content.value = post.content;
   edit_name.value = post.name;
+  let editTitle = post.title;
+  let editContent = post.content;
   const detailContainer = document.getElementById("footer");
   detailContainer.innerHTML = "";
   detailContainer.innerHTML = `
@@ -114,18 +114,20 @@ function editPost(index) {
   });
   console.log(editContent);
   document.getElementById("edit").addEventListener("click", () => {
-    if (editTitle === "" || editContent === "") {
-      if (editTitle === "") {
-        editTitle = post.title;
-        editContent;
-      } else if (editTitle === "") {
-        editTitle;
-        editContent = post.content;
-      } else {
-        editTitle;
-        editContent;
-      }
+    if (editTitle === "") {
+      editTitle = post.title;
+      editContent;
+    } else if (editContent === "") {
+      editTitle;
+      editContent = post.content;
+    } else if (editTitle === "" && editContent === "") {
+      editTitle = post.title;
+      editContent = post.content;
+    } else {
+      editTitle;
+      editContent;
     }
+    console.log(editTitle, editContent);
     post.title = editTitle;
     post.content = editContent;
     post.editTime = timestamp();
@@ -137,6 +139,30 @@ function editPost(index) {
     "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
   document.getElementsByClassName("btn_del")[0].style.cssText =
     "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px";
+  document
+    .getElementsByClassName("btn_edit")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_edit")[0].style.cssText =
+        "height: 35px; background-color : rgb(118, 172, 107); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_edit")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_edit")[0].style.cssText =
+        "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_del")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_del")[0].style.cssText =
+        "height: 35px; background-color : rgb(128, 136, 255); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_del")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_del")[0].style.cssText =
+        "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px;";
+    });
 }
 
 // 게시물 리스트 보기
@@ -196,6 +222,16 @@ function renderPosts() {
       document.querySelectorAll("td").forEach((v) => {
         v.style.backgroundColor = "gainsboro";
       });
+      document.querySelectorAll("td.board_tit").forEach((v) => {
+        v.addEventListener("mouseover", () => {
+          v.style.backgroundColor = "lightgray";
+        });
+      });
+      document.querySelectorAll("td.board_tit").forEach((v) => {
+        v.addEventListener("mouseleave", () => {
+          v.style.backgroundColor = "gainsboro";
+        });
+      });
     }
   }
   detailContainer.innerHTML = "";
@@ -237,7 +273,7 @@ function showDetail(index) {
     div3(div7("조회수") + div8(post.count)) +
     div4(div7("작성자") + div8(post.name)) +
     div5(div7("작성일시") + div8(post.time)) +
-    div9(div7("수정일시") + div8(post.editTime)) +
+    div9(div7("최종수정일시") + div8(post.editTime)) +
     div6(div7("내용") + div8(post.content));
 
   detailContainer.innerHTML = "";
@@ -259,6 +295,66 @@ function showDetail(index) {
     "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px;";
   document.getElementsByClassName("btn_next")[0].style.cssText =
     "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px; line-height:middle;";
+  document
+    .getElementsByClassName("btn_list")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_list")[0].style.cssText =
+        "height: 35px; background-color : rgb(108, 172, 140); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_list")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_list")[0].style.cssText =
+        "height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_edit")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_edit")[0].style.cssText =
+        "height: 35px; background-color : rgb(118, 172, 107); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_edit")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_edit")[0].style.cssText =
+        "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_del")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_del")[0].style.cssText =
+        "height: 35px; background-color : rgb(128, 136, 255); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_del")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_del")[0].style.cssText =
+        "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_pre")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_pre")[0].style.cssText =
+        "height: 35px; background-color : rgb(245, 104, 134); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_pre")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_pre")[0].style.cssText =
+        "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_next")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_next")[0].style.cssText =
+        "height: 35px; background-color : rgb(114, 192, 197); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_next")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_next")[0].style.cssText =
+        "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px;";
+    });
 }
 
 // 이전 게시물 보기
