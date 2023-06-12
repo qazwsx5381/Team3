@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -192,7 +192,7 @@
           <img class="logoimg" src="../img/고양이.png" alt="고양이" />
         </div>
         <div class="logo" id="numlogo">
-          <a href="./메인.html"
+          <a href="/index.html"
             ><img class="logoimg" src="../img/로고.png" alt="로고"
           /></a>
         </div>
@@ -213,4 +213,4 @@
       </div>
     </div>
   </body>
-</html>
+</html> -->
