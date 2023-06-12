@@ -1,5 +1,6 @@
 // 게시물 인덱스
 let currentIndex = 0;
+//test
 
 // 게시물 불러오기
 function getPosts() {
