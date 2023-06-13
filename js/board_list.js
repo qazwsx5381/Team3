@@ -354,7 +354,7 @@ function showDetail(index) {
     });
 }
 
-//게시물 수정할 때 조회수 count 안되게 설정
+//게시물 수정을 했거나 취소할 때 조회수 count 안되게 설정
 function editDetail(index) {
   const posts = getPosts();
   const post = posts[index];
