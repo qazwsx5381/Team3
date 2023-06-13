@@ -291,7 +291,7 @@ function showDetail(index) {
   document.getElementsByClassName("btn_pre")[0].style.cssText =
     "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px;";
   document.getElementsByClassName("btn_next")[0].style.cssText =
-    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px; line-height:middle;";
+    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px;";
   document
     .getElementsByClassName("btn_list")[0]
     .addEventListener("mouseover", () => {
@@ -358,7 +358,6 @@ function showDetail(index) {
 function editDetail(index) {
   const posts = getPosts();
   const post = posts[index];
-  savePosts(posts);
   const postsList = document.getElementById("content");
   const detailContainer = document.getElementById("footer");
   const div1 = (t) => `<div class='t_num'>${t}</div>`;
@@ -403,7 +402,7 @@ function editDetail(index) {
   document.getElementsByClassName("btn_pre")[0].style.cssText =
     "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px;";
   document.getElementsByClassName("btn_next")[0].style.cssText =
-    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px; line-height:middle;";
+    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px;";
   document
     .getElementsByClassName("btn_list")[0]
     .addEventListener("mouseover", () => {
