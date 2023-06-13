@@ -46,9 +46,17 @@ function editPost(index) {
   const post = posts[index];
   const postsList = document.getElementById("content");
   const form = document.createElement("form");
+
+  // postsList 내부 HTML 코드 비움
   postsList.innerHTML = "";
+
+  // postsList의 내부에 form코드 추가
   postsList.appendChild(form);
+
+  // form의 id 설정
   form.setAttribute("id", "postForm");
+
+  // form 내부 HTML 코드 작성
   form.innerHTML = `<div class="box">
       <div class="sub_title">
         <span>제목</span>
@@ -80,9 +88,13 @@ function editPost(index) {
         />
       </div>
     </div>`;
+
+  // HTML코드 내 id 찾기
   const edit_title = document.getElementById("board_title");
   const edit_content = document.getElementById("board_sub");
   const edit_name = document.getElementById("board_name");
+
+  //각 class의 이름을 찾아 style 설정
   document.getElementsByClassName("sub_title")[0].style.cssText =
     "display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;";
   document.getElementsByClassName("sub_content")[0].style.cssText =
@@ -95,43 +107,70 @@ function editPost(index) {
     document.querySelectorAll("input")[i].style.cssText =
       "width:90%; color:black;";
   });
+
+  // 기본 값을 설정
   edit_title.value = post.title;
   edit_content.value = post.content;
   edit_name.value = post.name;
   let editTitle = post.title;
   let editContent = post.content;
+
+  // footer라는 id 찾기
   const detailContainer = document.getElementById("footer");
+
+  // footer 내부 HTML 코드 비우기
   detailContainer.innerHTML = "";
+
+  // footer 내부 HTML 코드 작성
   detailContainer.innerHTML = `
   <button class="btn btn_edit" type="submit" id="edit">수정</button>
   <button class="btn btn_del" onclick="editDetail(${index})">취소</button>
   `;
+
+  // 글제목이 change(수정)되는 이벤트 발생 시 editTitle 값 변경
   document.getElementById("board_title").addEventListener("change", (event) => {
     editTitle = event.currentTarget.value;
   });
+
+  // 내용이 change(수정)되는 이벤트 발생 시 editContent 값 변경
   document.getElementById("board_sub").addEventListener("change", (event) => {
     editContent = event.currentTarget.value;
   });
+
+  // 수정 버튼을 눌렀을 때
   document.getElementById("edit").addEventListener("click", () => {
+    // 내용만 수정되고 제목은 수정하지 않았을 때
     if (editTitle === "") {
       editTitle = post.title;
       editContent;
+
+      // 제목만 수정되고 내용은 수정하지 않았을 때
     } else if (editContent === "") {
       editTitle;
       editContent = post.content;
+
+      // 제목과 내용이 수정되지 않았을 때
     } else if (editTitle === "" && editContent === "") {
       editTitle = post.title;
       editContent = post.content;
+
+      // 제목과 내용이 둘 다 수정되었을 때
     } else {
       editTitle;
       editContent;
     }
+
+    // 수정된 제목, 내용, 수정된 시간 값 설정 후 저장
     post.title = editTitle;
     post.content = editContent;
     post.editTime = timestamp();
     savePosts(posts);
+
+    // 다시 게시물로 돌아감
     editDetail(index);
   });
+
+  // 버튼 스타일 설정
   document.getElementsByClassName("btn_edit")[0].style.cssText =
     "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
   document.getElementsByClassName("btn_del")[0].style.cssText =
@@ -164,10 +203,15 @@ function editPost(index) {
 
 // 게시물 리스트 보기
 function renderPosts() {
+  // id를 찾고 localStorage에 저장된 posts를 가져옴
   const postsList = document.getElementById("content");
   const detailContainer = document.getElementById("footer");
   const posts = getPosts();
+
+  // postsList 내부 HTML 코드 비움
   postsList.innerHTML = "";
+
+  // postsList 내부 HTML 코드 작성
   postsList.innerHTML = `
     <table class="board" id="board">
     <tr class="board_title">
@@ -179,6 +223,9 @@ function renderPosts() {
     </tr>
     </table>
     `;
+
+  // localStorage에서 가져온 post.length의 값이 0일 경우 '작성된 게시물이 없습니다' 라고 표현
+  // 아니면 게시물 list 작성
   if (posts.length === 0) {
     const listItem = document.querySelector("table#board");
     const link = document.createElement("tr");
@@ -243,10 +290,13 @@ function renderPosts() {
 
 // 게시물 내용 보기(제목 클릭)
 function showDetail(index) {
+  // localStorage에서 가져온 post[index]의 조회수(count) 값에 1을 더하고 저장
   const posts = getPosts();
   const post = posts[index];
   post.count = post.count + 1;
   savePosts(posts);
+
+  // id 찾고 innerHTML 코드 작성을 위해 div값 설정
   const postsList = document.getElementById("content");
   const detailContainer = document.getElementById("footer");
   const div1 = (t) => `<div class='t_num'>${t}</div>`;
@@ -258,12 +308,18 @@ function showDetail(index) {
   const div7 = (t) => `<div class="t_a"><b>${t}</b></div>`;
   const div8 = (t) => `<div class="t_b">${t}</div>`;
   const div9 = (t) => `<div class='t_editTime'>${t}</div>`;
+
+  // post[index]의 editTime 값의 유무에 따라 post.editTime 출력 설정
   if (post.editTime) {
     post.editTime = post.editTime;
   } else {
     post.editTime = "없음";
   }
+
+  // postsList 내부 HTML 코드 지우기
   postsList.innerHTML = "";
+
+  // postsList 내부 HTML 코드 작성
   postsList.innerHTML =
     div1(div7("글번호") + div8(post.id)) +
     div2(div7("제목") + div8(post.title)) +
@@ -273,7 +329,10 @@ function showDetail(index) {
     div9(div7("최종수정일시") + div8(post.editTime)) +
     div6(div7("내용") + div8(post.content));
 
+  // detailContainer(footer) 내부 HTML 코드 지우기
   detailContainer.innerHTML = "";
+
+  // detailContainer(footer) 내부 HTML 코드 작성
   detailContainer.innerHTML = `
   <button class="btn btn_list" onclick="renderPosts()">목록</button>
   <button class="btn btn_edit" onclick="editPost(${index})">수정</button>
@@ -281,6 +340,8 @@ function showDetail(index) {
   <button class="btn btn_pre" onclick="showPreviousPost(${index})">이전 게시물</button>
   <button class="btn btn_next" onclick="showNextPost(${index})">다음 게시물</button>
   `;
+
+  // footer와 버튼의 style 설정
   document.getElementById("footer").style.display = "flex";
   document.getElementsByClassName("btn_list")[0].style.cssText =
     "height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px;";
