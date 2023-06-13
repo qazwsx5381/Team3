@@ -104,16 +104,14 @@ function editPost(index) {
   detailContainer.innerHTML = "";
   detailContainer.innerHTML = `
   <button class="btn btn_edit" type="submit" id="edit">수정</button>
-  <button class="btn btn_del" onclick="showDetail(${index})">취소</button>
+  <button class="btn btn_del" onclick="editDetail(${index})">취소</button>
   `;
   document.getElementById("board_title").addEventListener("change", (event) => {
     editTitle = event.currentTarget.value;
-    console.log(edit_title);
   });
   document.getElementById("board_sub").addEventListener("change", (event) => {
     editContent = event.currentTarget.value;
   });
-  console.log(editContent);
   document.getElementById("edit").addEventListener("click", () => {
     if (editTitle === "") {
       editTitle = post.title;
@@ -128,13 +126,11 @@ function editPost(index) {
       editTitle;
       editContent;
     }
-    console.log(editTitle, editContent);
     post.title = editTitle;
     post.content = editContent;
     post.editTime = timestamp();
-    console.log(post);
     savePosts(posts);
-    showDetail(index);
+    editDetail(index);
   });
   document.getElementsByClassName("btn_edit")[0].style.cssText =
     "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px";
@@ -250,6 +246,118 @@ function showDetail(index) {
   const posts = getPosts();
   const post = posts[index];
   post.count = post.count + 1;
+  savePosts(posts);
+  const postsList = document.getElementById("content");
+  const detailContainer = document.getElementById("footer");
+  const div1 = (t) => `<div class='t_num'>${t}</div>`;
+  const div2 = (t) => `<div class='t_title'>${t}</div>`;
+  const div3 = (t) => `<div class='t_count'>${t}</div>`;
+  const div4 = (t) => `<div class='t_create'>${t}</div>`;
+  const div5 = (t) => `<div class='t_time'>${t}</div>`;
+  const div6 = (t) => `<div class='t_sub'>${t}</div>`;
+  const div7 = (t) => `<div class="t_a"><b>${t}</b></div>`;
+  const div8 = (t) => `<div class="t_b">${t}</div>`;
+  const div9 = (t) => `<div class='t_editTime'>${t}</div>`;
+  if (post.editTime) {
+    post.editTime = post.editTime;
+  } else {
+    post.editTime = "없음";
+  }
+  postsList.innerHTML = "";
+  postsList.innerHTML =
+    div1(div7("글번호") + div8(post.id)) +
+    div2(div7("제목") + div8(post.title)) +
+    div3(div7("조회수") + div8(post.count)) +
+    div4(div7("작성자") + div8(post.name)) +
+    div5(div7("작성일시") + div8(post.time)) +
+    div9(div7("최종수정일시") + div8(post.editTime)) +
+    div6(div7("내용") + div8(post.content));
+
+  detailContainer.innerHTML = "";
+  detailContainer.innerHTML = `
+  <button class="btn btn_list" onclick="renderPosts()">목록</button>
+  <button class="btn btn_edit" onclick="editPost(${index})">수정</button>
+  <button class="btn btn_del" onclick="deletePost(${index})">삭제</button>
+  <button class="btn btn_pre" onclick="showPreviousPost(${index})">이전 게시물</button>
+  <button class="btn btn_next" onclick="showNextPost(${index})">다음 게시물</button>
+  `;
+  document.getElementById("footer").style.display = "flex";
+  document.getElementsByClassName("btn_list")[0].style.cssText =
+    "height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px;";
+  document.getElementsByClassName("btn_edit")[0].style.cssText =
+    "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px;";
+  document.getElementsByClassName("btn_del")[0].style.cssText =
+    "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px;";
+  document.getElementsByClassName("btn_pre")[0].style.cssText =
+    "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px;";
+  document.getElementsByClassName("btn_next")[0].style.cssText =
+    "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px; line-height:middle;";
+  document
+    .getElementsByClassName("btn_list")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_list")[0].style.cssText =
+        "height: 35px; background-color : rgb(108, 172, 140); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_list")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_list")[0].style.cssText =
+        "height: 35px; background-color : rgb(154, 212, 183); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_edit")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_edit")[0].style.cssText =
+        "height: 35px; background-color : rgb(118, 172, 107); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_edit")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_edit")[0].style.cssText =
+        "height: 35px; background-color : rgb(143, 206, 130); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_del")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_del")[0].style.cssText =
+        "height: 35px; background-color : rgb(128, 136, 255); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_del")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_del")[0].style.cssText =
+        "height: 35px; background-color : rgb(82, 91, 211); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_pre")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_pre")[0].style.cssText =
+        "height: 35px; background-color : rgb(245, 104, 134); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_pre")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_pre")[0].style.cssText =
+        "height: 35px; background-color : rgb(221, 72, 105); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_next")[0]
+    .addEventListener("mouseover", () => {
+      document.getElementsByClassName("btn_next")[0].style.cssText =
+        "height: 35px; background-color : rgb(114, 192, 197); margin-top:0px; margin-right:0px;";
+    });
+  document
+    .getElementsByClassName("btn_next")[0]
+    .addEventListener("mouseleave", () => {
+      document.getElementsByClassName("btn_next")[0].style.cssText =
+        "height: 35px; background-color : rgb(86, 144, 148); margin-top:0px; margin-right:0px;";
+    });
+}
+
+//게시물 수정할 때 조회수 count 안되게 설정
+function editDetail(index) {
+  const posts = getPosts();
+  const post = posts[index];
   savePosts(posts);
   const postsList = document.getElementById("content");
   const detailContainer = document.getElementById("footer");
